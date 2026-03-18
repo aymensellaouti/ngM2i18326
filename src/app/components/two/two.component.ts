@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-two',
   templateUrl: './two.component.html',
-  styleUrls: ['./two.component.css']
+  styleUrls: ['./two.component.css'],
+  imports: [FormsModule]
 })
 export class TwoComponent {
-  two = 'two';
+  two = 'init two value';
 
   updateTwo() {
     this.two = 'new Value'
