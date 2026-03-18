@@ -1,0 +1,19 @@
+<!-- Tu cache le paragraphe ou non
+  selon la valeur de isHidden
+-->
+<p [hidden]="isHidden">Hello {{name}}</p>
+<button (click)="showHide()" class="btn btn-danger">
+  show / hide
+</button>
+<div class="alert alert-info">
+  <app-second/>
+</div>
+<input
+  #myInput
+  (change)="changeMessage(myInput.value)" type="text">
+<p>Le contenu de l'input est : {{message}}</p>
+<!--
+  sélecteur (balise)
+    attributs => état
+    evenements => comportement
+-->
