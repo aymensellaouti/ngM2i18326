@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -8,10 +8,19 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './som.css',
 })
 export class Som {
-  x = 5;
-  y = 7;
-  z = this.x + this.y;
+  x = signal(5);
+  y = signal(7);
+  z = computed(() => this.x() + this.y());
+  doublez = computed(() => 2 * this.z())
   increment() {
-    this.x++;
+    //this.x++;
+    this.x.update((oldValue) => oldValue + 1);
+  }
+  log() {
+    console.log(this.x);
+  }
+
+  reset() {
+    this.x.set(0);
   }
 }

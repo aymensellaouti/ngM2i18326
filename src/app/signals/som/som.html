@@ -2,6 +2,8 @@
 <button (click)="increment()" class="btn btn-success">X++</button>
 <input type="number" [(ngModel)]="x" class="form-control">
 <input type="number" [(ngModel)]="y" class="form-control">
-{{ x }} + {{ y }} = {{ z }}
-
+{{ x() }} + {{ y() }} = {{ z() }} / {{doublez()}}
+<button (click)="reset()" class="btn btn-danger">
+  reset
+</button>
 <hr>
