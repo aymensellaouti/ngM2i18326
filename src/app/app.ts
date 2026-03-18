@@ -7,11 +7,12 @@ import { RotatingCard } from "./components/rotating-card/rotating-card";
 import { Som } from "./signals/som/som";
 import { TtcComponent } from "./signals/ttc/ttc.component";
 import { Names } from "./components/names/names";
+import { CvComponent } from "./cv/cv-component/cv-component";
 
 
 @Component({
   selector: 'app-root',
-  imports: [Color, TwoComponent, RotatingCard, Som, TtcComponent, Names],
+  imports: [Color, TwoComponent, RotatingCard, Som, TtcComponent, Names, CvComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
