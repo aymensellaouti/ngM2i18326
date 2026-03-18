@@ -1,0 +1,18 @@
+<p>names works!</p>
+
+<ul>
+  @for (name of names(); track $index) {
+    <li><app-name-info (clickedName)="shwoClickedName($event)" [name]="name" /></li>
+  }
+  @empty {
+    <!-- <app-name-info /> -->
+    <li>Nous ne disposons pas de noms pour le moment</li>
+  }
+</ul>
+
+<div style="background-color: red; margin: 2px;">
+  test
+<div style="background-color: yellow; margin: 2px;">test
+  <div style="background-color: black; margin: 2px;">test</div>
+</div>
+</div>
