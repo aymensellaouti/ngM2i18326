@@ -1,7 +1,10 @@
 import { Directive, signal } from '@angular/core';
 
 @Directive({
-  selector: '[appRainbow]',
+  // C'est pour etre sur de ne cibler que
+  // Les inputs de type texte qui ont un attribut
+  // appRainbow
+  selector: 'input[appRainbow][type=text]',
   host: {
     '[style.color]': 'this.color()',
     '[style.borderColor]': 'this.color()',
@@ -10,7 +13,10 @@ import { Directive, signal } from '@angular/core';
 })
 export class Rainbow {
   color = signal('red');
-  constructor() {}
+  constructor() {
+    console.log("AppRainbow");
+
+  }
   getRandomColor(): string {
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
   }

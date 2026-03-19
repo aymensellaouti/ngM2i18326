@@ -1,4 +1,5 @@
 <p
+  appRainbow
   appHighlight2
   [in]="'lightblue'"
   [out]="'white'"
@@ -9,7 +10,7 @@
   }"
 >mini-word works!</p>
 
-<div class="row">
+<div class="row" appRainbow>
   <div class="col"><input [(ngModel)]="color" type="color" class="form-control" /></div>
   <div class="col"><input [(ngModel)]="size" type="number" class="form-control" /></div>
   <div class="col">
