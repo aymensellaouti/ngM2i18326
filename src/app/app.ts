@@ -8,11 +8,14 @@ import { Som } from "./signals/som/som";
 import { TtcComponent } from "./signals/ttc/ttc.component";
 import { Names } from "./components/names/names";
 import { CvComponent } from "./cv/cv-component/cv-component";
+import { NgStyle } from "./directives/ng-style/ng-style";
+import { NgClass } from "./directives/ng-class/ng-class";
+import { MiniWordComponent } from "./directives/mini-word/mini-word.component";
 
 
 @Component({
   selector: 'app-root',
-  imports: [Color, TwoComponent, RotatingCard, Som, TtcComponent, Names, CvComponent],
+  imports: [Color, TwoComponent, RotatingCard, Som, TtcComponent, Names, CvComponent, NgStyle, NgClass, MiniWordComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
