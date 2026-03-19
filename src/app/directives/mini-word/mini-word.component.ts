@@ -1,11 +1,13 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Highlight } from '../highlight';
+import { Highlight2 } from '../highlight2';
 
 @Component({
   selector: 'app-mini-word',
   templateUrl: './mini-word.component.html',
   styleUrls: ['./mini-word.component.css'],
-  imports: [FormsModule]
+  imports: [FormsModule, Highlight, Highlight2]
 })
 export class MiniWordComponent {
   //state
