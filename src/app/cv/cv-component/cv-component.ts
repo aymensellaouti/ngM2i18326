@@ -1,7 +1,8 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Cv } from '../model/cv';
 import { CvList } from "../cv-list/cv-list";
 import { CvCard } from "../cv-card/cv-card";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cv-component',
@@ -18,7 +19,10 @@ export class CvComponent {
     new Cv(5, 'Gauthier', 'Riesser', 'Dev', '12345674', 20, 'rotating_card_profile3.png'),
   ]);
   selectedCv = signal<Cv | null>(null);
-
+  toastr = inject(ToastrService);
+  constructor() {
+    this.toastr.info('Bienvenu dans notre CvTech :D')
+  }
   onSelectedCv(cv: Cv) {
     this.selectedCv.set(cv);
   }
