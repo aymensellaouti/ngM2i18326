@@ -11,7 +11,7 @@ import { CvItem } from "../cv-item/cv-item";
 export class CvList {
   cvs = input<Cv[]>([]);
   forwardCv = output<Cv>();
-  onForwardCv(cv: Cv) {
-    this.forwardCv.emit(cv);
-  }
+  // onForwardCv(cv: Cv) {
+  //   this.forwardCv.emit(cv);
+  // }
 }

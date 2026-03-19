@@ -1,12 +1,16 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Cv } from '../model/cv';
+import { EmbaucheService } from '../services/embauche.service';
+import { CvItem } from "../cv-item/cv-item";
 
 
 @Component({
   selector: 'app-embauche',
   templateUrl: './embauche.component.html',
   styleUrls: ['./embauche.component.css'],
+  imports: [CvItem],
 })
 export class EmbaucheComponent {
-   public embauchees = signal<Cv[]>([]);
+  embaucheService = inject(EmbaucheService);
+   public embauchees = this.embaucheService.getEmbauchees();
 }
