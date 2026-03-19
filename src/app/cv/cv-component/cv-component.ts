@@ -18,4 +18,8 @@ export class CvComponent {
     new Cv(5, 'Gauthier', 'Riesser', 'Dev', '12345674', 20, 'rotating_card_profile3.png'),
   ]);
   selectedCv = signal<Cv | null>(null);
+
+  onSelectedCv(cv: Cv) {
+    this.selectedCv.set(cv);
+  }
 }
