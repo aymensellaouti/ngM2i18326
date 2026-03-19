@@ -1,7 +1,9 @@
-import { Component, signal, Signal } from "@angular/core";
+import { Component, inject, signal, Signal } from "@angular/core";
 
 import { DefaultImagePipe } from "../pipes/default-image-pipe";
 import { Cv } from "../model/cv";
+import { ActivatedRoute, Router } from "@angular/router";
+import { CvService } from "../services/cv.service";
 
 @Component({
   selector: 'app-details-cv',
@@ -12,17 +14,26 @@ import { Cv } from "../model/cv";
 export class DetailsCvComponent {
 
   cv = signal<Cv | null>(null);
-
+  activatedRoute = inject(ActivatedRoute);
+  cvService = inject(CvService);
+  router = inject(Router);
   constructor() {
     // 1ére étape : Récupérer l'id
-
+    const id = this.activatedRoute.snapshot.params['id'];
     //2éme étape : Le chercher via le service CvService
-
+    this.cv.set(this.cvService.findCvById(id));
     // 2- 1 S'il n'existe pas => redirige vers la liste des cvs
+    if(!this.cv())
+      this.router.navigate(['/cv']);
   }
 
   deleteCv() {
-    // 1 étape : Appelle le cvServie pour le supprimer
-    // 2 étape :redirige vers la liste des cvs
+    const cv = this.cv();
+    if (cv) {
+      // 1 étape : Appelle le cvServie pour le supprimer
+      this.cvService.deleteCv(cv);
+      // 2 étape :redirige vers la liste des cvs
+      this.router.navigate(['/cv']);
+    }
   }
 }
