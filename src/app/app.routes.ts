@@ -11,5 +11,6 @@ export const routes: Routes = [
   {path: 'todo', component: TodoComponent},
   {path: 'cv', component: CvComponent},
   {path: 'word', component: MiniWordComponent},
+  // Todo: Ajouter la route du DetailsCv
   {path: 'hello/:name/:firstname', component: Second},
 ];
