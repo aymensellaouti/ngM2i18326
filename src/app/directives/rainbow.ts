@@ -1,0 +1,20 @@
+import { Directive, signal } from '@angular/core';
+
+@Directive({
+  selector: '[appRainbow]',
+  host: {
+    '[style.color]': 'this.color()',
+    '[style.borderColor]': 'this.color()',
+    '(keyup)': 'this.onKeyup()',
+  },
+})
+export class Rainbow {
+  color = signal('red');
+  constructor() {}
+  getRandomColor(): string {
+    return '#' + Math.floor(Math.random() * 16777215).toString(16);
+  }
+  onKeyup() {
+    this.color.set(this.getRandomColor());
+  }
+}
