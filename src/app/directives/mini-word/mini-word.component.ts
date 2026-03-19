@@ -3,16 +3,19 @@ import { FormsModule } from '@angular/forms';
 import { Highlight } from '../highlight';
 import { Highlight2 } from '../highlight2';
 import { Rainbow } from '../rainbow';
+import { DatePipe, UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-mini-word',
   templateUrl: './mini-word.component.html',
   styleUrls: ['./mini-word.component.css'],
-  imports: [FormsModule, Highlight, Highlight2, Rainbow]
+  imports: [FormsModule, Highlight, Highlight2, Rainbow, DatePipe, UpperCasePipe]
 })
 export class MiniWordComponent {
   //state
   color = signal('black');
   font = signal('garamond');
   size = signal(75);
+
+  today = new Date();
 }

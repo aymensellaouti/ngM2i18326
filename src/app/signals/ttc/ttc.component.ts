@@ -1,3 +1,4 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, computed, effect, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -5,7 +6,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-ttc',
   templateUrl: './ttc.component.html',
   styleUrl: './ttc.component.css',
-  imports: [FormsModule],
+  imports: [FormsModule, CurrencyPipe],
 })
 export class TtcComponent {
   // State

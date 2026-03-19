@@ -8,7 +8,7 @@
     'font-family': font(),
     fontSize: size() + 'px'
   }"
->mini-word works!</p>
+>On est le : {{today | date: 'full' | uppercase}}</p>
 
 <div class="row" appRainbow>
   <div class="col"><input [(ngModel)]="color" type="color" class="form-control" /></div>
