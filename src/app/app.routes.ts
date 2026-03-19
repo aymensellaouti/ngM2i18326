@@ -6,11 +6,13 @@ import { MiniWordComponent } from './directives/mini-word/mini-word.component';
 import { Second } from './components/second/second';
 import { DetailsCvComponent } from './cv/details-cv/details-cv.component';
 import { Nf404 } from './components/nf404/nf404';
+import { Login } from './auth/login/login';
 
 export const routes: Routes = [
   // todo
   {path: '', component: First},
   {path: 'todo', component: TodoComponent},
+  {path: 'login', component: Login},
   {path: 'cv', component: CvComponent},
   {path: 'word', component: MiniWordComponent},
   // Todo: Ajouter la route du DetailsCv
