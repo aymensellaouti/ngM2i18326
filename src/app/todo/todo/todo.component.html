@@ -11,13 +11,23 @@
         </li>
       }
     </ol>
+    @if (todosResource.isLoading()) {
+      <div class="alert alert-info">
+        Loading...
+      </div>
+    } @else {
     <ol class="list-group list-group-success">
-      @for (todo of todosApi(); track $index ) {
-        <li
-          class="list-group-item">
-          {{todo.title}} {{todo.completed}}
-      }
-    </ol>
+      @for (todo of todosResource.value(); track $index ) {
+      <li class="list-group-item">
+        {{todo.title}} {{todo.completed}}
+        }
+      </ol>
+    }
+    @if (todosResource.error()) {
+      <div class="alert alert-danger">
+        Un problème est survenu, merci de contacter l'Admin
+      </div>
+    }
   </div>
   <div class="col">
     name:

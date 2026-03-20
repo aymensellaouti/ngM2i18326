@@ -1,6 +1,6 @@
-import { inject, Injectable, Signal, signal, WritableSignal } from "@angular/core";
+import { inject, Injectable, Resource, Signal, signal, WritableSignal } from "@angular/core";
 import { Todo } from "../model/todo";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, httpResource, HttpResourceRef } from "@angular/common/http";
 import { APP_API } from "../../config/api.config";
 import { TodoApi } from "../model/todo-api";
 import { Observable } from "rxjs";
@@ -14,14 +14,19 @@ export class TodoService {
   // Fournie moi le HttpClient qui va me permettre de faire des appels HTTP à mes API
   httpClient = inject(HttpClient);
 
-
   /**
    * Permet de récupérer le flux des TodoApis
    * Observable<TodoApi[]>
    */
   getTodosFromApi(): Observable<TodoApi[]> {
     // Flux , il peut intéresser * plusieurs observateurs
-    return this.httpClient.get<TodoApi[]>(APP_API.todo)
+    return this.httpClient.get<TodoApi[]>(APP_API.todo);
+  }
+
+  getTodosResource(): Resource<TodoApi[]> {
+    return httpResource(() => APP_API.todo, {
+      defaultValue: []
+    });
   }
 
   /**
@@ -43,7 +48,7 @@ export class TodoService {
     this.#todos.update((actualTodos) => [
       // ... récupére tous les éléments du tableau
       ...actualTodos,
-      todo
+      todo,
     ]);
   }
 
@@ -53,9 +58,7 @@ export class TodoService {
    * @param todo: Todo
    */
   deleteTodo(todo: Todo): void {
-    this.#todos.update((actualTodos) =>
-      actualTodos.filter(todoEnCours => todoEnCours != todo)
-    )
+    this.#todos.update((actualTodos) => actualTodos.filter((todoEnCours) => todoEnCours != todo));
   }
 
   /**

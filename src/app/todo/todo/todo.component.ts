@@ -16,6 +16,7 @@ export class TodoComponent {
   todoService = inject(TodoService);
   todos = this.todoService.getTodos();
   todosApi = signal<TodoApi[]>([]);
+  todosResource = this.todoService.getTodosResource();
   constructor() {
     console.log('construct Todo');
 
