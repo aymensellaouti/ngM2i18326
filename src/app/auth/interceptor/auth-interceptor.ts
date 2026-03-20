@@ -17,11 +17,12 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
         const newReq = req.clone({
           headers
         });
-        return next(newReq).subscribe({
-          next: (response) => {
-            // Je récupére la réponse et j'en fais ce que je veux
-          }
-        });
+        return next(newReq)
+        // .subscribe({
+        //   next: (response) => {
+        //     // Je récupére la réponse et j'en fais ce que je veux
+        //   }
+        // });
       }
       // Sinon je ne fais rien
       return next(req);

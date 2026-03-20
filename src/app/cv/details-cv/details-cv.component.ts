@@ -5,6 +5,7 @@ import { Cv } from "../model/cv";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CvService } from "../services/cv.service";
 import { ToastrService } from "ngx-toastr";
+import { toSignal } from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'app-details-cv',
@@ -18,12 +19,14 @@ export class DetailsCvComponent {
    * Le cv à afficher
    */
   cv = signal<Cv | null>(null);
+
   cvService = inject(CvService);
+  activatedRoute = inject(ActivatedRoute);
+  // cv2 = toSignal(this.cvService.getCvByIdApi(1))
   /**
    * Les informations sur la route active
    * Vosu pouvez récupérer les paramètres de la route via l'object snapshot et son objet params
    */
-  activatedRoute = inject(ActivatedRoute);
   /**
    * Il ne permet de naviguer via sa méthode navigate
    */
