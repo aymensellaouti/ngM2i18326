@@ -12,6 +12,8 @@ import { RouterLink } from "@angular/router";
   styleUrl: './cv-card.css',
 })
 export class CvCard {
+  // Je récupére le cv en tant que signal grace à input
+  // et à chaque fois qu'il change je change
   cv = input<Cv | null>(null);
   embaucheService = inject(EmbaucheService);
   toastr = inject(ToastrService);

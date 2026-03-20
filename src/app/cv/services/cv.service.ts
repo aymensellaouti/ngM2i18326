@@ -68,15 +68,9 @@ export class CvService {
    * @returns elle supprime le cv via son id
    */
   deleteCvByIdApi(id: number): Observable<unknown> {
-    // Je crée mon header
-    const headers = new HttpHeaders().set(
-      APP_CONST.authHeaderName,
-      localStorage.getItem(APP_CONST.authToken) ?? ''
-    );
+
     // Je passe le header en paramètre
-    return this.httpClient.delete(APP_API.cv + id, {
-      headers: headers
-    });
+    return this.httpClient.delete(APP_API.cv + id,);
   }
 
   /**

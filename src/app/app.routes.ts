@@ -8,6 +8,7 @@ import { DetailsCvComponent } from './cv/details-cv/details-cv.component';
 import { Nf404 } from './components/nf404/nf404';
 import { Login } from './auth/login/login';
 import { AddCvComponent } from './cv/add-cv/add-cv.component';
+import { authGuard } from './auth/guards/auth-guard';
 
 export const routes: Routes = [
   // todo
@@ -17,7 +18,8 @@ export const routes: Routes = [
   {path: 'cv', component: CvComponent},
   {path: 'word', component: MiniWordComponent},
   // Todo: Ajouter la route du DetailsCv
-  {path: 'cv/add', component: AddCvComponent},
+  // Le guard permet de ne laisser l'accès que pour les personnes concernés : ici authentifié
+  {path: 'cv/add', component: AddCvComponent, canActivate: [authGuard]},
   {path: 'cv/:id', component: DetailsCvComponent},
   {path: 'hello/:name/:firstname', component: Second},
   {path: '**', component: Nf404}
