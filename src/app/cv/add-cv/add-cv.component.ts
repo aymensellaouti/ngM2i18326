@@ -5,14 +5,17 @@ import { FormBuilder, Validators, AbstractControl, ReactiveFormsModule } from "@
   selector: 'app-add-cv',
   templateUrl: './add-cv.component.html',
   styleUrls: ['./add-cv.component.css'],
-  imports: [ReactiveFormsModule]
+  imports: [ReactiveFormsModule],
 })
 export class AddCvComponent {
   formBuilder = inject(FormBuilder);
-
+  minMaxRequired = Validators.compose([Validators.required, Validators.min(15), Validators.max(30)]);
   form = this.formBuilder.group(
     {
-      name: ['', Validators.required],
+      name: ['', {
+        validators: Validators.required,
+        updateOn: 'blur'
+      }],
       firstname: ['', Validators.required],
       path: [''],
       job: ['', Validators.required],
@@ -26,7 +29,7 @@ export class AddCvComponent {
         0,
         {
           validators: [Validators.required],
-          updateOn: 'blur',
+          updateOn: 'change',
         },
       ],
     },
@@ -34,11 +37,25 @@ export class AddCvComponent {
       validators: [],
       asyncValidators: [],
       updateOn: 'change',
-    }
+    },
   );
-  constructor() {}
-  addCv() {
+  constructor() {
+    // this.name.valueChanges.subscribe({
+    //   next: (value) => {
+    //     console.log(value);
+    //   }
+    // })
+    this.age.valueChanges.subscribe({
+      next: age => {
+        if (age<18) {
+          this.path?.disable();
+        } else {
+          this.path?.enable();
+        }
+      }
+    })
   }
+  addCv() {}
 
   get name(): AbstractControl {
     return this.form.get('name')!;
