@@ -1,6 +1,9 @@
-import {  Injectable, Signal, signal } from '@angular/core';
+import {  inject, Injectable, Signal, signal } from '@angular/core';
 import { Cv } from '../model/cv';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { APP_API } from '../../config/api.config';
+
 
 
 
@@ -30,6 +33,9 @@ export class CvService {
    * Une copie du cv sélectionné mais en lecture seule
    */
   selectedCv = this.#selectedCv.asReadonly();
+
+  httpClient = inject(HttpClient);
+
   /**
    * Retourne la liste des cvs
    * @returns Cv[]
@@ -45,15 +51,15 @@ export class CvService {
    * @returns Le flux des cvs de l'api
    */
   getCvsByApi(): Observable<Cv[]> {
-    return of([]);
+    return this.httpClient.get<Cv[]>(APP_API.cv);
   }
 
   /**
    *
-   * @returns Le flux des cvs de l'api
+   * @returns Le flux du cv via son id
    */
-  getCvByIdApi(): Observable<Cv> {
-    return of(new Cv(1, 'Hanane', 'Elharti', 'Dev', '12345678', 20, ''));
+  getCvByIdApi(id: number): Observable<Cv> {
+    return this.httpClient.get<Cv>(APP_API.cv + id);
   }
 
   /**

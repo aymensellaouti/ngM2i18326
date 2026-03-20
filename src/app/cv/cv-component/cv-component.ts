@@ -14,12 +14,22 @@ import { EmbaucheComponent } from "../embauche/embauche.component";
 })
 export class CvComponent {
   cvService = inject(CvService);
-  cvs = this.cvService.getCvs();
+  cvs = signal<Cv[]>([])
   selectedCv = this.cvService.selectedCv;
   toastr = inject(ToastrService);
   constructor() {
     this.toastr.info('Bienvenu dans notre CvTech :D');
     // Todo: Subscribe au flux des cvs
+    this.cvService.getCvsByApi().subscribe({
+      next: (cvsApi) => {
+        this.cvs.set(cvsApi);
+      },
+      error: (e) => {
+        const cvsSignal = this.cvService.getCvs()
+        this.cvs.set(cvsSignal());
+        this.toastr.error(`Attention les données sont fictives merci de contatcer l'admin`)
+      }
+    })
     // Si ok on les affecte au siganl de cvs
     // Sinon gérer l'erreur
   }
