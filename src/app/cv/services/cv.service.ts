@@ -1,7 +1,7 @@
 import {  inject, Injectable, Signal, signal } from '@angular/core';
 import { Cv } from '../model/cv';
 import { Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { APP_API } from '../../config/api.config';
 import { APP_CONST } from '../../config/constantes';
 
@@ -68,9 +68,12 @@ export class CvService {
    * @returns elle supprime le cv via son id
    */
   deleteCvByIdApi(id: number): Observable<unknown> {
-
     // Je passe le header en paramètre
-    return this.httpClient.delete(APP_API.cv + id,);
+    return this.httpClient.delete(APP_API.cv + id);
+  }
+  getCvsByProperty(property: string, value: string): Observable<Cv[]> {
+    const params = new HttpParams().set('filter', `{"where":{"${property}":"${value}"}}`);
+    return this.httpClient.get<Cv[]>(APP_API.cv, { params });
   }
 
   /**

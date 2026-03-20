@@ -3,4 +3,5 @@ export const APP_CONST = {
   authToken: 'authToken',
   authParamName: 'access_token',
   authHeaderName: 'Authorization',
+  savedAddForm: 'savedAddForm',
 };
