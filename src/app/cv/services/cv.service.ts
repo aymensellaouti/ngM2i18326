@@ -1,5 +1,6 @@
 import {  Injectable, Signal, signal } from '@angular/core';
 import { Cv } from '../model/cv';
+import { Observable, of } from 'rxjs';
 
 
 
@@ -41,13 +42,29 @@ export class CvService {
 
   /**
    *
+   * @returns Le flux des cvs de l'api
+   */
+  getCvsByApi(): Observable<Cv[]> {
+    return of([]);
+  }
+
+  /**
+   *
+   * @returns Le flux des cvs de l'api
+   */
+  getCvByIdApi(): Observable<Cv> {
+    return of(new Cv(1, 'Hanane', 'Elharti', 'Dev', '12345678', 20, ''));
+  }
+
+  /**
+   *
    * Cherche un cv avec son id dans lai liste fictive de cvs
    *
    * @param id
    * @returns Cv | null
    */
   findCvById(id: number): Cv | null {
-    return this.#cvs().find(cv => cv.id == id) ?? null;
+    return this.#cvs().find((cv) => cv.id == id) ?? null;
   }
 
   /**
@@ -58,9 +75,7 @@ export class CvService {
    * @returns boolean
    */
   deleteCv(cv: Cv): void {
-        this.#cvs.update((actualsCv) =>
-          actualsCv.filter((cvEnCours) => cvEnCours != cv),
-        );
+    this.#cvs.update((actualsCv) => actualsCv.filter((cvEnCours) => cvEnCours != cv));
   }
   /**
    *

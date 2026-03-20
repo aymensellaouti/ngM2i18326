@@ -19,7 +19,9 @@ export class CvComponent {
   toastr = inject(ToastrService);
   constructor() {
     this.toastr.info('Bienvenu dans notre CvTech :D');
-
+    // Todo: Subscribe au flux des cvs
+    // Si ok on les affecte au siganl de cvs
+    // Sinon gérer l'erreur
   }
   // onSelectedCv(cv: Cv) {
   //   this.selectedCv.set(cv);

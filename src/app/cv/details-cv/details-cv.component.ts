@@ -31,10 +31,13 @@ export class DetailsCvComponent {
     // 1ére étape : Récupérer l'id
     const id = this.activatedRoute.snapshot.params['id'];
     //2éme étape : Le chercher via le service CvService
+
+    // Todo: Subscribe au flux du cv By Id
+    // Si ok on l'affecte au siganl de cv
+    // Sinon gérer l'erreur
     this.cv.set(this.cvService.findCvById(id));
     // 2- 1 S'il n'existe pas => redirige vers la liste des cvs
-    if(!this.cv())
-      this.router.navigate(['/cv']);
+    if (!this.cv()) this.router.navigate(['/cv']);
   }
 
   deleteCv() {
