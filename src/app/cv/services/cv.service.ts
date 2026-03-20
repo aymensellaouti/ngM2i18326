@@ -7,6 +7,10 @@ import { Cv } from '../model/cv';
   providedIn: 'root',
 })
 export class CvService {
+  /**
+   * La liste des cvs à gérer
+   * Elle est privé pour garder lo gestion et le control niveau service
+   */
   #cvs = signal<Cv[]>([
     new Cv(1, 'Hanane', 'Elharti', 'Dev', '12345678', 20, ''),
     new Cv(2, 'Jennifer', 'Denis', 'Dev', '12345679', 20, 'rotating_card_profile.png'),
@@ -15,13 +19,23 @@ export class CvService {
     new Cv(5, 'Gauthier', 'Riesser', 'Dev', '12345674', 20, 'rotating_card_profile3.png'),
   ]);
 
+  /**
+   * Le signal qui représente le cv sélectionné
+   * Il est privé pour garder le control
+   */
   #selectedCv = signal<Cv | null>(null);
+
+  /**
+   * Une copie du cv sélectionné mais en lecture seule
+   */
   selectedCv = this.#selectedCv.asReadonly();
   /**
    * Retourne la liste des cvs
    * @returns Cv[]
    */
   getCvs(): Signal<Cv[]> {
+    // Le asReadonly va etre en sorte que le seul qui puisse modifier la listye c'est le service
+    // Encapsulation, le consomateur il ne peut que lire
     return this.#cvs.asReadonly();
   }
 

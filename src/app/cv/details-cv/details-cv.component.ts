@@ -13,9 +13,19 @@ import { CvService } from "../services/cv.service";
 })
 export class DetailsCvComponent {
 
+  /**
+   * Le cv à afficher
+   */
   cv = signal<Cv | null>(null);
-  activatedRoute = inject(ActivatedRoute);
   cvService = inject(CvService);
+  /**
+   * Les informations sur la route active
+   * Vosu pouvez récupérer les paramètres de la route via l'object snapshot et son objet params
+   */
+  activatedRoute = inject(ActivatedRoute);
+  /**
+   * Il ne permet de naviguer via sa méthode navigate
+   */
   router = inject(Router);
   constructor() {
     // 1ére étape : Récupérer l'id

@@ -18,7 +18,8 @@ export class CvComponent {
   selectedCv = this.cvService.selectedCv;
   toastr = inject(ToastrService);
   constructor() {
-    this.toastr.info('Bienvenu dans notre CvTech :D')
+    this.toastr.info('Bienvenu dans notre CvTech :D');
+
   }
   // onSelectedCv(cv: Cv) {
   //   this.selectedCv.set(cv);

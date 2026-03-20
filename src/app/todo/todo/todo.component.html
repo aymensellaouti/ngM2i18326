@@ -11,6 +11,13 @@
         </li>
       }
     </ol>
+    <ol class="list-group list-group-success">
+      @for (todo of todosApi(); track $index ) {
+        <li
+          class="list-group-item">
+          {{todo.title}} {{todo.completed}}
+      }
+    </ol>
   </div>
   <div class="col">
     name:

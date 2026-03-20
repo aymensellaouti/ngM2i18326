@@ -1,11 +1,28 @@
-import { Injectable, Signal, signal, WritableSignal } from "@angular/core";
+import { inject, Injectable, Signal, signal, WritableSignal } from "@angular/core";
 import { Todo } from "../model/todo";
+import { HttpClient } from "@angular/common/http";
+import { APP_API } from "../../config/api.config";
+import { TodoApi } from "../model/todo-api";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root',
 })
 export class TodoService {
   #todos = signal<Todo[]>([]);
+
+  // Fournie moi le HttpClient qui va me permettre de faire des appels HTTP à mes API
+  httpClient = inject(HttpClient);
+
+
+  /**
+   * Permet de récupérer le flux des TodoApis
+   * Observable<TodoApi[]>
+   */
+  getTodosFromApi(): Observable<TodoApi[]> {
+    // Flux , il peut intéresser * plusieurs observateurs
+    return this.httpClient.get<TodoApi[]>(APP_API.todo)
+  }
 
   /**
    * elle retourne la liste des todos
