@@ -6,9 +6,12 @@
   <input type="text" class="form-control" formControlName="firstname" /> Age:
   <input type="text" class="form-control" formControlName="age" /> Cin:
   <input type="text" class="form-control" formControlName="cin" />
+  <!-- {{cin.errors | json}} -->
+  @if(cin.getError('uniqueCin'); as cinError ){
+    <div class="alert alert-danger">{{cinError}}</div>
+  }
   Job: <input type="text" class="form-control" formControlName="job" /> Path:
   <input type="text" class="form-control" formControlName="path" />
-
   <button [disabled]="form.invalid" class="btn btn-primary" (click)="addCv()">
     add cv
   </button>

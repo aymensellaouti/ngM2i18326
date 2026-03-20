@@ -3,12 +3,13 @@ import { FormBuilder, Validators, AbstractControl, ReactiveFormsModule } from "@
 import { APP_CONST } from "../../config/constantes";
 import { uniqueCinValidator } from "../../asyncValidators/unique-cin.validator";
 import { CvService } from "../services/cv.service";
+import { JsonPipe } from "@angular/common";
 
 @Component({
   selector: 'app-add-cv',
   templateUrl: './add-cv.component.html',
   styleUrls: ['./add-cv.component.css'],
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, JsonPipe],
 })
 export class AddCvComponent implements OnDestroy {
   formBuilder = inject(FormBuilder);
@@ -35,6 +36,7 @@ export class AddCvComponent implements OnDestroy {
         {
           validators: [Validators.required, Validators.pattern('[0-9]{8}')],
           asyncValidators: [uniqueCinValidator(this.cvSerivce)],
+          updateOn: 'blur',
         },
       ],
       age: [
