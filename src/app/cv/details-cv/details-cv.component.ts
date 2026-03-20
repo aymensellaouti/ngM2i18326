@@ -4,6 +4,7 @@ import { DefaultImagePipe } from "../pipes/default-image-pipe";
 import { Cv } from "../model/cv";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CvService } from "../services/cv.service";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: 'app-details-cv',
@@ -27,6 +28,7 @@ export class DetailsCvComponent {
    * Il ne permet de naviguer via sa méthode navigate
    */
   router = inject(Router);
+  toaster = inject(ToastrService);
   constructor() {
     // 1ére étape : Récupérer l'id
     const id = this.activatedRoute.snapshot.params['id'];
@@ -53,9 +55,18 @@ export class DetailsCvComponent {
     const cv = this.cv();
     if (cv) {
       // 1 étape : Appelle le cvServie pour le supprimer
-      this.cvService.deleteCv(cv);
+      //this.cvService.deleteCv(cv);
       // 2 étape :redirige vers la liste des cvs
-      this.router.navigate(['/cv']);
+      this.cvService.deleteCvByIdApi(cv.id).subscribe({
+        next: () => {
+          this.router.navigate(['/cv']);
+        },
+        error: (e) => {
+          console.log({e});
+          this.toaster.error('Problème de suppression');
+        },
+      });
+
     }
   }
 }
